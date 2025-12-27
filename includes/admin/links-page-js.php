@@ -590,16 +590,16 @@ jQuery(function($){
     });
     
     //Let the user use Enter and Esc as shortcuts for "Update" and "Cancel"
-    $('.blc-inline-editor input[type="text"]').keypress(function (e) {
-		var editRow = $(this).closest('.blc-inline-editor');
-		if (e.which == 13) {
-			editRow.find('.blc-update-link-button').click();
-			return false;
-		} else if (e.which == 27) {
-			editRow.find('.blc-cancel-button').click();
-			return false;
-		}
-		return true;
+    $('.blc-inline-editor input[type="text"]').on('keypress', function (e) {
+        var editRow = $(this).closest('.blc-inline-editor');
+        if (e.which == 13) {
+            editRow.find('.blc-update-link-button').click();
+            return false;
+        } else if (e.which == 27) {
+            editRow.find('.blc-cancel-button').click();
+            return false;
+        }
+        return true;
 	});
 
 
@@ -751,7 +751,7 @@ jQuery(function($){
 		var filter_name = prompt("<?php echo esc_js(__("Gib einen Namen für den neuen benutzerdefinierten Filter ein", 'psource-link-checker')); ?>", "");
 		if ( filter_name ){
 			$('#blc-custom-filter-name').val(filter_name);
-			$('#custom-filter-form').submit();
+			$('#custom-filter-form').trigger('submit');
 		}
 	});
 	
@@ -773,7 +773,7 @@ jQuery(function($){
     // Bulk actions
     //--------------------------------------------
     
-    $('#blc-bulk-action-form').submit(function(){
+    $('#blc-bulk-action-form').on('submit', function(){
     	var action = $('#blc-bulk-action').val(), message;
     	if ( action ==  '-1' ){
 			action = $('#blc-bulk-action2').val();
@@ -811,7 +811,7 @@ jQuery(function($){
 	});
 
 	//Automatically disable bulk actions that don't apply to the currently selected links.
-	$('#blc-bulk-action').focus(function() {
+	$('#blc-bulk-action').on('focus', function() {
 		var redirectsSelected = false, brokenLinksSelected = false;
 		$('tr th.check-column input:checked', '#blc-links').each(function() {
 			var row = $(this).closest('tr');
@@ -892,11 +892,11 @@ jQuery(function($){
 		$('#adv-settings').submit();	
 	});
 	
-	$('#blc_links_per_page').keypress(function(e){
-		if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-			$('#adv-settings').submit();
-		}	
-	});
+	$('#blc_links_per_page').on('keypress', function(e){
+        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+            $('#adv-settings').trigger('submit');
+        }	
+    });
 	
 	//Toggle status code colors when the corresponding checkbox is toggled
 	$('#table_color_code_status').on('click', function(){
@@ -929,7 +929,7 @@ jQuery(function($){
 	$('#bulk-edit input[type="submit"]').on('click', function(e){
 		if( $('#bulk-edit input[name="search"]').val() == '' ){
 			alert('<?php echo esc_js(__('Gib zuerst eine Suchzeichenfolge ein.', 'psource-link-checker')); ?>');
-			$('#bulk-edit input[name="search"]').focus();
+			$('#bulk-edit input[name="search"]').trigger('focus');
 			e.preventDefault();
 			return;
 		}

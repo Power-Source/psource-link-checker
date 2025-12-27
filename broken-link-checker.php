@@ -1,7 +1,7 @@
 <?php
 /*
- * Plugin Name: Link Checker
- * Plugin URI:  https://cp-psource.github.io/psource-link-checker/
+ * Plugin Name: PS Link Checker
+ * Plugin URI:  https://power-source.github.io/psource-link-checker/
  * Description: Überprüft Deine Seite auf fehlerhafte Links und fehlende Bilder und benachrichtigt Dich im Dashboard, falls gefunden.
  * Version:     1.0.7
  * Author:      PSOURCE
@@ -38,7 +38,7 @@ add_action( 'admin_notices', function() {
             $is_installed = isset( $all_plugins[ $plugin_file ] );
             
             echo '<div class="notice notice-warning is-dismissible"><p>';
-            echo '<strong>PS Chat:</strong> ';
+            echo '<strong>PSOURCE MANAGER:</strong> ';
             
             if ( $is_installed ) {
                 // Installiert aber inaktiv - Aktivierungs-Link

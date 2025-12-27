@@ -17,9 +17,18 @@ ModuleCheckerUrlPattern: @^https?://(?:([\w\d]+\.)*youtube\.[^/]+/watch\?.*v=[^/
 */
 
 class blcYouTubeChecker extends blcChecker {
-	var $youtube_developer_key = 'AIzaSyAyye_rE5jYd7VpwvcLNItXQCo5zxVvMFY';
-	var $api_grace_period = 0.3; //How long to wait between YouTube API requests.
-	var $last_api_request = 0;   //Timestamp of the last request.
+       var $api_grace_period = 0.3; //How long to wait between YouTube API requests.
+       var $last_api_request = 0;   //Timestamp of the last request.
+       var $youtube_developer_key = '';
+
+       function __construct() {
+	       parent::__construct();
+	       // Lade API-Key aus den Plugin-Optionen
+	       $conf = blc_get_configuration();
+	       if (!empty($conf->options['youtube_api_key'])) {
+		       $this->youtube_developer_key = $conf->options['youtube_api_key'];
+	       }
+       }
 	
 	function can_check($url, $parsed){
 		return true;

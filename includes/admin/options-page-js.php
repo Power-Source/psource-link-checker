@@ -142,6 +142,14 @@ jQuery(function($){
 	$('#target_resource_usage').on('change', function() {
 		$('#target_resource_usage_percent').text($(this).val() + '%')
 	});
+	
+	// Zeige das YouTube API-Key Feld nur, wenn das YouTube-Modul aktiviert ist
+    function toggleYouTubeApiKeyField() {
+        var ytChecked = $('#module-checkbox-youtube-checker').is(':checked');
+        $('#youtube-api-key-row').toggle(ytChecked);
+    }
+    $('#module-checkbox-youtube-checker').on('change', toggleYouTubeApiKeyField);
+    toggleYouTubeApiKeyField();
 });
 
 </script>

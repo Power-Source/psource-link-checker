@@ -400,6 +400,10 @@ class wsBrokenLinkChecker {
 				$active = array_keys($_POST['module']);
 				$moduleManager->set_active_modules($active);
 			}
+			// Speichere YouTube API-Key
+			if (isset($_POST['youtube_api_key'])) {
+				$this->conf->options['youtube_api_key'] = trim($_POST['youtube_api_key']);
+			}
 
 			//Only post statuses that actually exist can be selected
 			if ( isset($_POST['enabled_post_statuses']) && is_array($_POST['enabled_post_statuses']) ){
@@ -1017,12 +1021,22 @@ class wsBrokenLinkChecker {
 		<td>
 		<?php
 		if ( !empty($modules['checker']) ){
-			$modules['checker'] = array_reverse($modules['checker']);
 			$this->print_module_list($modules['checker'], $this->conf->options);
 		}
 		?>
 		</td></tr>
-
+		<tr valign="top" id="youtube-api-key-row" style="display:none;">
+			<th scope="row">YouTube API Key</th>
+			<td>
+				<input type="text" name="youtube_api_key" id="youtube_api_key" value="<?php echo esc_attr($this->conf->options['youtube_api_key'] ?? ''); ?>" size="50" />
+				<br/>
+				<span class="description">
+					Um YouTube-Links zuverlässig zu prüfen, wird ein eigener YouTube API-Key benötigt.<br>
+					<a href="https://console.developers.google.com/apis/credentials" target="_blank">Hier kannst Du einen API-Key erstellen</a> (Google-Konto erforderlich).<br>
+					Anleitung: Gehe zu "APIs & Dienste" → "Anmeldedaten" → "Anmeldedaten erstellen" → "API-Schlüssel". Trage den Schlüssel hier ein.
+				</span>
+			</td>
+		</tr>
 		</table>
 		</div>
 
@@ -1465,10 +1479,10 @@ class wsBrokenLinkChecker {
 			file_put_contents( dirname($this->loader) . '/includes/extra-strings.php', $code );
 		}
 
-		$action = !empty($_POST['action'])?$_POST['action']:'';
+		$action = !empty($_POST['action']) ? $_POST['action'] : '';
 		if ( intval($action) == -1 ){
 			//Try the second bulk actions box
-			$action = !empty($_POST['action2'])?$_POST['action2']:'';
+			$action = !empty($_POST['action2']) ? $_POST['action2'] : '';
 		}
 
 		//Get the list of link IDs selected via checkboxes
@@ -2825,7 +2839,7 @@ class wsBrokenLinkChecker {
 			$text .= __("Keine defekten Links gefunden.", 'psource-link-checker');
 		}
 
-		$text .= "<br/>";
+		$text .= "<br>";
 
 		if( $status['unchecked_links'] > 0) {
 			$text .= sprintf(

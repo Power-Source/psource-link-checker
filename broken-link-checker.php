@@ -3,7 +3,7 @@
  * Plugin Name: PS Link Checker
  * Plugin URI:  https://power-source.github.io/psource-link-checker/
  * Description: Überprüft Deine Seite auf fehlerhafte Links und fehlende Bilder und benachrichtigt Dich im Dashboard, falls gefunden.
- * Version:     1.0.7
+ * Version:     1.0.8
  * Author:      PSOURCE
  * Author URI:  https://github.com/cp-psource
  * Text Domain: psource-link-checker

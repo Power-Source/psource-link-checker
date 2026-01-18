@@ -21,8 +21,8 @@ class blcYouTubeChecker extends blcChecker {
        var $last_api_request = 0;   //Timestamp of the last request.
        var $youtube_developer_key = '';
 
-       function __construct() {
-	       parent::__construct();
+       function __construct($module_id, $cached_header, &$plugin_conf, &$module_manager) {
+	       parent::__construct($module_id, $cached_header, $plugin_conf, $module_manager);
 	       // Lade API-Key aus den Plugin-Optionen
 	       $conf = blc_get_configuration();
 	       if (!empty($conf->options['youtube_api_key'])) {

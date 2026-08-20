@@ -50,6 +50,8 @@ Du kannst auch auf den Inhalt der Spalten "Status" oder "Linktext" klicken, um w
 == ChangeLog ==
 
 = 1.0.9 =
+* Fix:Problem mit Skript-Abhängigkeiten
+* Fix: Pfade aktualisiert
 
 = 1.0.8 =
 * Fix Fatal Error beim Multisite-Aktivieren pro Seite

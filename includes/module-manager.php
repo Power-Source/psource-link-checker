@@ -849,7 +849,7 @@ class blcModuleManager {
 			}
 			if ( !empty($module_header['Name']) ){
 				$strings[] = sprintf(
-					'_x("%s", "Modulname", "broken-link-checker");',
+					'_x("%s", "Modulname", "psource-link-checker");',
 					str_replace('"', '\"', $module_header['Name'])
 				);
 			}

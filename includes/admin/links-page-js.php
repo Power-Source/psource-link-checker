@@ -1,5 +1,3 @@
-<script type='text/javascript'>
-
 function alterLinkCounter(factor, filterId){
 	var counter;
 	if (filterId) {
@@ -943,4 +941,3 @@ jQuery(function($){
 
 });
 
-</script>

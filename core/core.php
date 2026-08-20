@@ -222,12 +222,23 @@ class wsBrokenLinkChecker {
 		wp_enqueue_script('jquery-cookie', plugins_url('js/jquery.cookie.js', BLC_PLUGIN_FILE)); //Used for storing last widget states, etc
 	}
 
-	function enqueue_link_page_scripts(){
-		wp_enqueue_script('jquery-ui-core');
-		wp_enqueue_script('jquery-ui-dialog'); //Used for the search form
-		wp_enqueue_script('jquery-color');     //Used for background color animation
-		wp_enqueue_script('sprintf', plugins_url('js/sprintf.js', BLC_PLUGIN_FILE)); //Used in error messages
-	}
+	function enqueue_link_page_scripts( $hook ) {
+    if ( 'tools.php' !== $hook ) {
+        return;
+    }
+
+    if ( ! isset( $_GET['page'] ) || 'view-broken-links' !== $_GET['page'] ) {
+        return;
+    }
+
+    wp_enqueue_script( 'jquery-ui-dialog' );
+    wp_enqueue_script( 'jquery-color' );
+
+    wp_enqueue_script(
+        'sprintf',
+        plugins_url( 'js/sprintf.js', BLC_PLUGIN_FILE )
+    );
+}
 
   /**
    * Initiate a full recheck - reparse everything and check all links anew.
@@ -327,7 +338,7 @@ class wsBrokenLinkChecker {
 		add_action( 'admin_print_styles-' . $options_page_hook, array($this, 'options_page_css') );
 		add_action( 'admin_print_styles-' . $links_page_hook, array($this, 'links_page_css') );
 		add_action( 'admin_print_scripts-' . $options_page_hook, array($this, 'enqueue_settings_scripts') );
-		add_action( 'admin_print_scripts-' . $links_page_hook, array($this, 'enqueue_link_page_scripts') );
+		add_action( 'admin_enqueue_scripts', array($this, 'enqueue_link_page_scripts') );
 
 		//Make the Settings page link to the link list
 		add_screen_meta_link(
@@ -557,7 +568,7 @@ class wsBrokenLinkChecker {
 				if ( $this->conf->options['custom_log_file_enabled'] ) {
 					$log_file = strval($cleanPost['log_file']);
 				} else {
-					//Default log file is /wp-content/uploads/broken-link-checker/blc-log.txt
+					//Default log file is /wp-content/uploads/psource-link-checker/blc-log.txt
 					$log_directory = self::get_default_log_directory();
 					$log_file = $log_directory . '/' . self::get_default_log_basename();
 
@@ -1612,7 +1623,11 @@ class wsBrokenLinkChecker {
 		printf('<!-- Insgesamt benötigt: %.4f Sekunden -->', microtime_float() - $start_time);
 
 		//Load assorted JS event handlers and other shinies
-		include dirname($this->loader) . '/includes/admin/links-page-js.php';
+		//include dirname($this->loader) . '/includes/admin/links-page-js.php';
+		wp_add_inline_script(
+    'jquery-ui-dialog',
+    file_get_contents( dirname($this->loader) . '/includes/admin/links-page-js.php' )
+);
 
 		?></div><?php
 	}
@@ -3850,7 +3865,7 @@ class wsBrokenLinkChecker {
 
 	protected static function get_default_log_directory() {
 		$uploads = wp_upload_dir();
-		return $uploads['basedir'] . '/broken-link-checker';
+		return $uploads['basedir'] . '/psource-link-checker';
 	}
 
 	protected static function get_default_log_basename() {

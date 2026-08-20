@@ -256,7 +256,7 @@ class blcCurlHttp extends blcHttpCheckerBase {
 		}
 
         // Apply filter for additional options
-        curl_setopt_array($ch, apply_filters('broken-link-checker-curl-options', array()) );
+        curl_setopt_array($ch, apply_filters('psource-link-checker-curl-options', array()) );
 
 		//Execute the request
 		$start_time = microtime_float();
@@ -323,7 +323,7 @@ class blcCurlHttp extends blcHttpCheckerBase {
 
 
         // Apply filter before curl closes
-        apply_filters('broken-link-checker-curl-before-close', $ch, $content, $this->last_headers);
+        apply_filters('psource-link-checker-curl-before-close', $ch, $content, $this->last_headers);
 
         curl_close($ch);
 

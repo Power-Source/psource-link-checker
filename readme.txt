@@ -1,12 +1,13 @@
 === PS Broken Link Checker ===
 
-Plugin URI:  https://github.com/cp-psource/shop/artikel/defekter-link-checker-plugin/
+Plugin URI: https://psource.eimen.net/wiki/psource-link-checker/ 
 Tags: links, broken, detect, seo, usability, classicpress-plugin
 Contributors: PSOURCE
 Requires at least: 4.9
-Tested up to: WordPress 6.8.0, ClassicPress 2.6.0
-Requires PHP: 7.2
-Stable tag: 1.0.8
+WordPress 7.1.0 
+ClassicPress 2.7.1
+Requires PHP: 8.0
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,10 +49,10 @@ Du kannst auch auf den Inhalt der Spalten "Status" oder "Linktext" klicken, um w
 
 == ChangeLog ==
 
-= 1.0.8 =
+= 1.0.9 =
 
+= 1.0.8 =
 * Fix Fatal Error beim Multisite-Aktivieren pro Seite
 
 = 1.0.7 =
-
 * Release Psource

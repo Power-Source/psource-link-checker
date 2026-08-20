@@ -183,7 +183,7 @@ class blcComment extends blcContainer{
 		}
 		
 		$image = sprintf(
-			'<img src="%s/broken-link-checker/images/%s" class="blc-small-image" title="%3$s" alt="%3$s"> ',
+			'<img src="%s/psource-link-checker/images/%s" class="blc-small-image" title="%3$s" alt="%3$s"> ',
 			WP_PLUGIN_URL,
 			$image,
 			__('Comment', 'psource-link-checker')

@@ -1,11 +1,11 @@
 <?php
 /*
  * Plugin Name: PS Link Checker
- * Plugin URI:  https://power-source.github.io/psource-link-checker/
+ * Plugin URI:  https://psource.eimen.net/wiki/psource-link-checker/
  * Description: Überprüft Deine Seite auf fehlerhafte Links und fehlende Bilder und benachrichtigt Dich im Dashboard, falls gefunden.
- * Version:     1.0.8
+ * Version:     1.0.9
  * Author:      PSOURCE
- * Author URI:  https://github.com/cp-psource
+ * Author URI:  https://psource.eimen.net/
  * Text Domain: psource-link-checker
  * Domain Path: languages
  * License:     GPLv2 or later

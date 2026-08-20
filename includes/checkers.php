@@ -49,7 +49,7 @@ class blcChecker extends blcModule {
    *	'final_url' (string) - The redirected-to URL. Assumed to be equal to the checked URL by default.
    *	'request_duration' (float) - How long it took for the server to respond. Defaults to 0 seconds.
    *	'timeout' (bool) - True if checking the URL resulted in a timeout. Defaults to false.
-   *	'may_recheck' (bool) - Allow the plugin to re-check the URL after 'recheck_threshold' seconds (see broken-link-checker.php).
+   *	'may_recheck' (bool) - Allow the plugin to re-check the URL after 'recheck_threshold' seconds (see psource-link-checker.php).
    *	'log' (string) - Free-form log of the performed check. It will be displayed in the "Details" section of the checked link.
    *	'result_hash' (string) - A free-form hash or code uniquely identifying the detected link status. See sub-classes for examples. Max 200 characters.   
    *
